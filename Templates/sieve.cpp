@@ -16,7 +16,14 @@ vector<bool> sieve(int n) {
 }
 
 //odd only sieve
-
+// 🔑 Why we only go up to √n
+// When you’re marking multiples in the sieve, you don’t need to check primes beyond √n because:
+// Suppose you’re at a prime p.
+// If p > √n, then p * p > n.
+// That means any composite number ≤ n must already have been marked by a smaller prime factor.
+// In other words:
+// Every composite number ≤ n has at least one prime factor ≤ √n.
+// So once you’ve crossed √n, all remaining numbers that are still marked as prime are indeed prime — no further marking is needed
 vector<bool> sieve_odd_only(int n) {
     vector<bool> is_prime(n, true);
     is_prime[0] = is_prime[1] = false;
