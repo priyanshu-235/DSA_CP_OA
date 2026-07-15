@@ -9,39 +9,43 @@ using namespace std;
 
 //function to get scores
 int gameScoreDiff(vector<int>& arr){
-    int start=0,end=arr.size()-1;
-    bool turn=true;
-    int rev=0;
-    bool isrev=true;
-    int p1=0,p2=0;
-    while(start!=end){
+     int s=0,e=arr.size()-1;
+     int p1=0,p2=0;
+     bool turn = true;
+     int rev=0;
+     int last=0;
+     while(s!=e){
+      cout<<arr[s];
+      if(turn){
+        p1+=arr[s];
+        cout<<"p1"<<p1<<endl;
+      }
+      else{
+        p2+=arr[s];
+        cout<<"p2"<<p2<<endl;
+      }
+      last=s;
+      if(rev%2==0){
+        s++;
+      }
+      else{
+        s--;
+      }
+      if(arr[last]%2==0){
+        swap(s,e);
+        cout<<"swapped";
+        rev++;
+      }
+
+      turn=!turn;
+     }
      if(turn){
-        p1+=arr[start];
+        p1+=arr[s];
      }
      else{
-        p2+=arr[start];
+        p2+=arr[s];
      }
-     turn=!turn;
-     if(arr[start]%2==0){rev++;isrev=true;}
-     else{isrev=false;}
-     if(isrev && rev%2==1){
-      start++;
-      swap(start,end);
-     }
-     else if(isrev && rev%2==0){
-       start--;
-       swap(start,end);
-     }
-     else{
-        if(rev%2==0){
-            start++;
-        }
-        else start--;
-     }
-    }
-    if(turn)p1+=arr[start];
-    else p2+=arr[start];
-    return abs(p2-p1);
+     return abs(p1-p2);
 }
 
 
